@@ -73,3 +73,8 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "log_groups_arn" {
+  description = "Log groups arn"
+  type        = string
+}

@@ -59,9 +59,9 @@ module "lambda" {
   create_async_event_config               = true
   attach_async_event_policy               = true
   allowed_triggers = {
-    for index in range(length(var.log_groups)) : "AllowExecutionFromCloudWatch-${index}" => {
+    "AllowExecutionFromCloudWatch-All" = {
       principal  = "logs.amazonaws.com"
-      source_arn = "${data.aws_cloudwatch_log_group.this[index].arn}:*"
+      source_arn = var.log_groups_arn
     }
   }
   tags = merge(var.tags, local.tags)
